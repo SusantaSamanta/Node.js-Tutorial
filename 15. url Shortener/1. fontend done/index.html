@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        ::-webkit-scrollbar{
+            height: 0px;
+            width: 0px;
+        }
+        body {
+            min-height: 100vh;
+            padding-block: 50px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            color: #333;
+        }
+
+        .todoContainer {
+            min-height: 400px;
+            width: 650px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .todo-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            /* border: 1px solid red; */
+
+        }
+
+        #todoHeaderH1 {
+            background: linear-gradient(to bottom right, #ff7e5f, #8161ff);
+            /* Gradient colors */
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .todo-header span {
+            margin-left: 10px;
+            margin-bottom: 3px;
+            font-size: 1.2rem;
+        }
+
+        .addLink {
+            padding-bottom: 45px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            border: 01px solid rgb(239, 236, 250);
+            border-radius: 25px;
+            position: relative;
+
+            input::placeholder {
+                color: #8170c6;
+            }
+
+            p {
+                margin-left: 5px;
+                margin-bottom: 5px;
+                font-size: 20px;
+                font-weight: 600;
+                color: #4723d6;
+            }
+        }
+
+        .fa-solid {
+            color: #5c38ed;
+        }
+
+        .addLinkInput {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            padding-inline: 20px;
+            font-size: 1rem;
+            border: 01px solid red;
+            border-radius: 25px;
+            outline: none;
+            color: #4723d6;
+        }
+
+        #addTaskButton {
+            position: absolute;
+            right: 0%;
+            bottom: 0%;
+            padding: 11px 30px;
+            font-size: 1rem;
+            border: none;
+            background: #5c38ed;
+            color: white;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #addTaskButton:hover {
+            background-color: #411dd0;
+        }
+
+        #listContainer {
+            width: 100%;
+            /* border: 1px solid red; */
+            color: white;
+
+            #row {
+                width: 100%;
+                margin-block: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                column-gap: 1px;
+            }
+
+            #linkContainer1stColumn {
+                width: 25%;
+                height: 95px;
+                padding-block: 10px;
+                padding-left: 40px;
+                border-radius: 10px 0px 0 10px;
+                background: #6d49ff;
+                /* border: 1px solid red; */
+                
+                div {
+                    margin-block: 5px;
+                    padding-inline: 0px;
+                }
+            }
+            
+            #linkContainer2ndRow {
+                width: 75%;
+                height: 95px;
+                padding-block: 10px;
+                border-radius: 0px 10px 10px 0;
+                background: #9175ff;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                /* border: 1px solid green; */
+
+                div {
+                    width: 95%;
+                    /* border: 1px solid; */
+                    overflow-x: scroll;
+                    margin-block: 5px;
+                }
+            }
+
+        }
+
+        /* #listContainer {
+            width: 100%;
+            min-height: 200px;
+            display: grid;
+            grid-template-rows: 1fr 3fr;
+            place-items: start;
+            padding-block: 10px;
+            padding-left: 15px;
+            background: #d4c9ff;
+            border-radius: 0px 0px 10px 10px;
+
+            div {
+                width: 70%;
+                text-wrap: auto;
+                border: 1px solid red;
+            }
+        } */
+    </style>
+</head>
+
+<body>
+
+    <body>
+        <div class="todoContainer">
+            <div class="todo-header">
+                <h1 id="todoHeaderH1">Shorten Your Long Links</h1>
+            </div>
+            <form>
+                <div class="addLink">
+                    <p>Enter URL For Shorten <i class="fa-solid fa-link"></i> </p>
+                    <input id="urlInput" class="addLinkInput" type="text" placeholder="Enter a url" />
+                    <p>Enter Short Code </p>
+                    <input id="codeInput" class="addLinkInput" type="text" placeholder="Enter a code" />
+                    <button id="addTaskButton" type="submit">Shorten</button>
+                </div>
+            </form>
+            <div id="listContainer">
+                <div id="row">
+                    <div id="linkContainer1stColumn">
+                        <div id="originalLinkHead">Original Link :</div>
+                        <div id="shortLinkHead">Shorted Link :</div>
+                        <div id="addDateHeading">Date :</div>
+                    </div>
+                    <div id="linkContainer2ndRow">
+                        <div>http://127.0.0.1:5500/15.%20url%20Shortner/index.html</div>
+                        <div>http://127.0.0.1:55000000000000000/15.%20url%20Shortner/index.html</div>
+                        <div>10:20am 20/10/2025</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    
+
+
+    </body>
+
+</html>

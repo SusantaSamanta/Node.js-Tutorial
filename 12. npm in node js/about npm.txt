@@ -1,0 +1,46 @@
+npm CLI : Command Line Interface
+
+npm : not write in capital latter,
+      node package manager this is not the actual full form of npm
+      that is : npm is not an acronym
+
+
+/////   To install an package by npm : npm install    or    npm i 
+            example : npm i express
+                                      the is install package is visible on :  package-lock.json
+
+//////  node_modules is heavy in size that,s why we include .gitignore file 
+
+
+//////  npm install : if we delete node_modules file , by the command npm install we download all package use in project
+
+//////  npm list : this Command show all package install in project 
+
+//////  npm list -a : this show whole list of package which are install 
+
+//////  npm view <package_name> : to shew the detailed of the package.
+                            example : npm view nodemon 
+
+//////  npm view <package_name> version  : to see the version of the package                            
+                            example : npm view nodemon version 
+                
+//////  npm view <package_name> versions  : to see the list of all version of the package from start to end                           
+                            example : npm view nodemon versions 
+
+//////  npm outdated   : it show all outdated package in the project 
+//////  npm outdated -g  : it show all global outdated package  
+
+
+//////  npm update : update all package 
+//////  npm update <package_name> : update the package 
+//////  npm update -g : update all global package 
+//////  npm update -g <package_name> : update the package globally
+
+
+//////  npm remove <package_name> : to remove the package from project
+//////  npm remove -g <package_name> : to remove the package from global
+
+
+////// npx npm-check-updates -u : the update the package.json file
+
+
