@@ -1,0 +1,16 @@
+{
+  "name": "node_js_tutorial",
+  "version": "1.0.0",
+  "description": "node js practice ",
+  "main": "11. http sever.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "susanta",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "nodemon": "^3.1.9"
+  }
+}

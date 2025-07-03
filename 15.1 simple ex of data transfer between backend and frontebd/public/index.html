@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <body>
+        <div class="todoContainer">
+            <div class="todo-header">
+                <h1 id="todoHeaderH1">Shorten Your Long Links</h1>
+            </div>
+            <form id="ShortenForm">
+                <div class="addLink">
+                    <p>Enter URL For Shorten <i class="fa-solid fa-link"></i> </p>
+                    <input id="urlInput" name="urlIn" class="addLinkInput" type="text" placeholder="Enter a url" />
+                    <p>Enter Short Code </p>
+                    <input id="codeInput" name="codeIn" class="addLinkInput" type="text" placeholder="Enter a code" />
+                    <button id="addTaskButton" type="submit">Shorten</button>
+                </div>
+            </form>
+            <div id="listContainer">
+                <div id="row">
+                    <div id="linkContainer1stColumn">
+                        <div id="originalLinkHead">Original Link :</div>
+                        <div id="shortLinkHead">Shorted Link :</div>
+                        <div id="addDateHeading">Date :</div>
+                    </div>
+                    <div id="linkContainer2ndRow">
+                        <div>http://127.0.0.1:5500/15.%20url%20Shortner/index.html</div>
+                        <div>http://127.0.0.1:55000000000000000/15.%20url%20Shortner/index.html</div>
+                        <div>10:20am 20/10/2025</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <script>
+            document.getElementById('ShortenForm').addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                let formData = new FormData(event.target);
+                let url = formData.get('urlIn');
+                let shortCode = formData.get('codeIn');
+                console.log(url, shortCode);
+
+                try {
+                    const response = await fetch('/shorten', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ url, shortCode }),
+                    });
+                    let data = await response.json();
+
+                    if (data.success) {
+                        console.log(data.url, data.shortCode)
+                    } 
+                    
+                    else {
+                        alert(`Final data can't receive`);
+                    }
+                }
+                catch (err) {
+                    alert(`Data can't receive...`)
+                }
+
+
+
+
+            })
+
+
+        </script>
+
+
+    </body>
+
+</html>
