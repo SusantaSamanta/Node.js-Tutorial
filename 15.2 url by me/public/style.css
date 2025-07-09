@@ -1,0 +1,160 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+}
+
+body {
+    min-height: 100vh;
+    padding-block: 50px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: #333;
+}
+
+.todoContainer {
+    min-height: 380px;
+    width: 650px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px #00000033;
+}
+
+.todo-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+
+}
+
+#todoHeaderH1 {
+    background: linear-gradient(to bottom right, #ff7e5f, #8161ff);
+    /* Gradient colors */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.todo-header span {
+    margin-left: 10px;
+    margin-bottom: 3px;
+    font-size: 1.2rem;
+}
+
+.addLink {
+    padding-bottom: 45px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* border: 01px solid #efecfa; */
+    border-radius: 25px;
+    position: relative;
+
+    input::placeholder {
+        color: #8170c6;
+    }
+
+    p {
+        margin-left: 5px;
+        margin-bottom: 5px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #4723d6;
+    }
+}
+
+.fa-solid {
+    color: #5c38ed;
+}
+
+.addLinkInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    padding-inline: 20px;
+    font-size: 1rem;
+    border: 01px solid #411dd0;
+    border-radius: 25px;
+    outline: none;
+    color: #4723d6;
+}
+
+#addTaskButton {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+    padding: 11px 30px;
+    font-size: 1rem;
+    border: none;
+    background: #5c38ed;
+    color: white;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#addTaskButton:hover {
+    background-color: #411dd0;
+}
+
+#listContainer {
+    width: 100%;
+    /* border: 1px solid red; */
+    color: white;
+
+    #linkContainerRow {
+        width: 100%;
+        margin-block: 10px;
+        padding-block: 5px;
+        padding-left: 40px;
+        padding-right: 10px;
+        border-radius: 10px;
+        background: #6d49ff;
+        position: relative;
+        /* border: 1px solid red; */
+
+        word-break: break-all;
+        div {
+            display: inline-block;
+            margin-block: 5px;
+            padding-inline: 0px;
+            /* border: 1px solid red; */
+        }
+
+        span {
+            margin-right: 10px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .fa-solid {
+            color: #ffffff92;
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+        }
+
+        :hover {
+            color: white;
+        }
+
+    }
+
+}
