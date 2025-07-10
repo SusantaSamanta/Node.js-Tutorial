@@ -41,18 +41,39 @@ const server = http.createServer(async (req, res) => {
         else if (req.url == '/style.css') {
             fileServe(res, path.join('public', 'style.css'), 'text/css');   // giv the css file to frontend 
         }
+        else if (req.url == '/linksGet') {
+            let links = await getLinkFromDB();  // receive all save code,url from DB folder as object form
+            res.writeHead(200, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify(links));
+        }  
     }
+    if (req.url == '/deleteCodeFromDB' && req.method == 'POST') {
+        let links = await getLinkFromDB(); 
+        let code = '';
+        req.on('data', chunk => {
+            code += chunk;
+        });
+        req.on('end', async () => {
+            console.log(code,': ',links[code],'Delete from DB'); 
+            delete links[code]; 
+            await saveLinkInDB(links);
+        })
+
+        res.writeHead(200, { 'Content-Type': 'text/plain' })
+        res.end(links[code]);
+        return;
+    }  
     if (req.method == 'POST' || req.url == '/shorten') {
 
         let links = await getLinkFromDB();  // receive all save code,url from DB folder as object form
         // console.log(links);
-
+        
         let body = '';
         req.on('data', chunk => {
             body += chunk;
         });
         req.on('end', async () => {
-            const { url, shortCode } = JSON.parse(body);
+            const {shortCode, url } = JSON.parse(body);
 
             console.log(shortCode, url);
 

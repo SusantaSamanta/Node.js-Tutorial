@@ -35,21 +35,20 @@
                     </div>
 
                     <div id="shortLinkHead"><span>Shorted Link :</span>
-                        http://127.0.0.1:5655550000/15.%hdhdghdhdfhdfhdfhdfhdfhdfh20url%20Shortner/index.html
+                        <a id="atag">efgbefgefg</a>http://127.0.0.1:565000/15.%hdhdgh20url%20Shortner/index.html
                     </div>
 
-                    <div id="addDateHeading"><span>Date :</span>
+                    <!-- <div id="addDateHeading"><span>Date :</span>
                         10:20am 20/10/2025
-                    </div>
+                    </div> -->
 
                     <i class="fa-solid fa-trash"></i>
                 </div>
-                
+
             </div>
         </div>
 
 
-        <link rel="icon" href="data:,">
 
 
 
@@ -59,7 +58,17 @@
         <script>
 
 
+            // delete data from DB folder by the help of code(or class of <i>)
+
+
+
+
+
             document.getElementById('listContainer').addEventListener('click', (event) => {
+                let targetClass = event.target.classList // console.log(targetClass[2]);
+
+                deleteDataFromDB(targetClass[2]);
+
                 if (event.target.classList.contains('fa-trash')) {
                     event.target.closest('#linkContainerRow').remove(); // Remove the closest parent div
                 }
@@ -71,24 +80,24 @@
                 let formData = new FormData(event.target);
                 let url = formData.get('urlIn');
                 let shortCode = formData.get('codeIn');
-                console.log(url, shortCode);
+                console.log(shortCode, url);
 
                 try {
                     const response = await fetch('/shorten', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ url, shortCode }),
+                        body: JSON.stringify({ shortCode, url }),
                     });
                     let data = await response.json();
 
                     if (data.success) {
-                        console.log(data.url, data.shortCode)
+                        console.log(data.shortCode, data.url)
                     }
                     else {
                         if (data.cause == 'urlRequire') {
                             alert(`Url require......`);
                         }
-                        else if(data.cause == 'uniqueCodeRequire') {
+                        else if (data.cause == 'uniqueCodeRequire') {
                             alert(`Unique Short Code require......`);
                         }
                         else
@@ -101,10 +110,53 @@
                     alert(`Data can't receive...`)
                 }
 
-
-
-
             })
+
+
+
+            let listContainer = document.getElementById('listContainer');
+
+            const restoreDataFromDB = async () => { // '/linksGet' fetch all data from BD folder 
+                let response = await fetch('/linksGet', {  // this url give a request to the backend
+                    method: 'GET',  // it is an get request 
+                })
+                let data = await response.json();
+
+                for (let [code, url] of Object.entries(data)) {
+                    let linkRow = document.createElement('div');
+                    linkRow.id = 'linkContainerRow';
+
+                    linkRow.innerHTML = `<div><span>Original Link :</span>
+                                        <a href="${url}">${url}</a>
+                                    </div>
+
+                                    <div><span>Shorted Link :</span>
+                                        http://127.0.0.1:565000/15.%hdhdgh20url%20Shortner/index.html
+                                    </div>
+
+                                    <i class="fa-solid fa-trash ${code}"></i> ` //where I give the code as a class because. when it clicked then code(class[2]) will delete from DB folder using deleteDataFromDB() fun
+                    listContainer.insertBefore(linkRow, listContainer.firstChild);
+
+                    // console.log(code, ":", url);
+                }
+
+            }
+            restoreDataFromDB();
+
+
+            const deleteDataFromDB = async (code) => {
+                try {
+                    let deleteCode = await fetch('/deleteCodeFromDB', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain' },
+                        body: code,
+                    });
+                    console.log(deleteCode);
+                } catch (er) {
+                    console.log(er);
+                }
+            }
+
 
 
         </script>
